@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "194799563470",
+    "project_id": "comingsoon-flutter-project",
+    "storage_bucket": "comingsoon-flutter-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194799563470:android:b91986e631357833f2d69f",
+        "android_client_info": {
+          "package_name": "com.theEndIsNear.comingsoon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194799563470-k6rjnanjru3mhlpd3bfn9r3cteapjibm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3zv07xLi16wagpKx8Ez09iRdfuo_bqHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194799563470-k6rjnanjru3mhlpd3bfn9r3cteapjibm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "194799563470-j56m1l58bu4dcpe53u5mpe7dv2rnvt2c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theEndIsNear.comingsoon"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
