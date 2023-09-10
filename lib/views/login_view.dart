@@ -1,4 +1,5 @@
 import 'package:comingsoon/constants/routes.dart';
+import 'package:comingsoon/utilities/show_error_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
@@ -64,10 +65,27 @@ class _LoginViewState extends State<LoginView> {
                 );
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'wrong-password') {
-                  ('Wrong password.');
+                  await showErrorDialog(
+                    context,
+                    'Wrong ',
+                  );
+                  ;
                 } else if (e.code == 'user-not-found') {
-                  devtools.log('Somthing else happened');
+                  await showErrorDialog(
+                    context,
+                    'User not found',
+                  );
+                } else {
+                  await showErrorDialog(
+                    context,
+                    'Error:${e.code}',
+                  );
                 }
+              } catch (e) {
+                await showErrorDialog(
+                  context,
+                  e.toString(),
+                );
               }
             },
             child: const Text('Login'),
@@ -79,7 +97,7 @@ class _LoginViewState extends State<LoginView> {
                 (route) => false,
               );
             },
-            child: const Text('Not register yet? Register here'),
+            child: const Text('Not register yet? Register here!'),
           )
         ],
       ),
