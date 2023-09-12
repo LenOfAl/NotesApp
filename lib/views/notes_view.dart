@@ -1,6 +1,7 @@
 import 'package:comingsoon/constants/routes.dart';
 import 'package:comingsoon/enums_menu_actions.dart';
 import 'package:comingsoon/services/auth/auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NotesView extends StatefulWidget {
@@ -41,7 +42,7 @@ class _NotesViewState extends State<NotesView> {
           )
         ],
       ),
-      body: const Text("Hello world"),
+      body: Text(FirebaseAuth.instance.currentUser!.email.toString()),
     );
   }
 }

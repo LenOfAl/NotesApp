@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "194799563470-k6rjnanjru3mhlpd3bfn9r3cteapjibm.apps.googleusercontent.com",
+          "client_id": "194799563470-mi3sk0nqgavnmjbt9rrgd9l9ebn687q3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theEndIsNear.comingsoon",
+            "certificate_hash": "4aff647e3343756f29f6b3090c5c1ad9d2655586"
+          }
+        },
+        {
+          "client_id": "194799563470-862mo62vqpjn5s3d3d17drn8shqmtg9k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "194799563470-k6rjnanjru3mhlpd3bfn9r3cteapjibm.apps.googleusercontent.com",
+              "client_id": "194799563470-862mo62vqpjn5s3d3d17drn8shqmtg9k.apps.googleusercontent.com",
               "client_type": 3
             },
             {
