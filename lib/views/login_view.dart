@@ -2,7 +2,6 @@ import 'package:comingsoon/constants/routes.dart';
 import 'package:comingsoon/services/auth/auth_exceptions.dart';
 import 'package:comingsoon/services/auth/auth_services.dart';
 import 'package:comingsoon/utilities/show_error_dialog.dart';
-import 'package:comingsoon/views/google_auth_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -32,8 +31,6 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleAuthView();
-
     return Scaffold(
       appBar: AppBar(
           title: const Text(
@@ -67,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
-                final user = AuthService.firebase().currerntUser;
+                final user = AuthService.firebase().currentUser;
                 if (user?.isEmailVerified ?? false) {
                   if (!mounted) return;
                   Navigator.of(context).pushNamedAndRemoveUntil(

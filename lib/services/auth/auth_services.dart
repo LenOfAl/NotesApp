@@ -18,7 +18,7 @@ class AuthService implements AuthProvider {
       );
 
   @override
-  AuthUser? get currerntUser => provider.currerntUser;
+  AuthUser? get currentUser => provider.currentUser;
 
   @override
   Future<AuthUser?> logIn({
