@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
@@ -5,6 +6,16 @@ import 'crud_exceptions.dart';
 
 class NotesService {
   Database? _db;
+
+  List<DatabaseNote> _notes = [];
+  final _notesStreamController =
+      StreamController<List<DatabaseNote>>.broadcast();
+
+  Future<void> _cachedNotes() async {
+    final allNotes = await getAllNotes();
+    _notes = allNotes.toList();
+    _notesStreamController.add(_notes);
+  }
 
   Future<DatabaseNote> updateNote({
     required DatabaseNote note,
@@ -19,7 +30,10 @@ class NotesService {
     if (updatesCount == 0) {
       throw CouldNotUpdateNoteException();
     } else {
-      return await getNote(id: note.id);
+      final updatedNote = await getNote(id: note.id);
+      _notes.removeWhere((note) => note.id == updatedNote.id);
+      _notesStreamController.add(_notes);
+      return updatedNote;
     }
   }
 
@@ -39,13 +53,20 @@ class NotesService {
     );
     if (notes.isEmpty) {
       throw CouldNotFindNoteException();
+    } else {
+      final note = DatabaseNote.fromRow(notes.first);
+      _notes.removeWhere((note) => note.id == id);
+      _notes.add(note);
+      _notesStreamController.add(_notes);
+      return note;
     }
-    return DatabaseNote.fromRow(notes.first);
   }
 
   Future<int> deleteAllNotes() async {
     final db = _getDatabaseOrThrow();
     final deletedCount = await db.delete(noteTable);
+    _notes = [];
+    _notesStreamController.add(_notes);
     return deletedCount;
   }
 
@@ -58,6 +79,9 @@ class NotesService {
     );
     if (deletedCount == 0) {
       throw CouldNotDeleteNoteException();
+    } else {
+      _notes.removeWhere((note) => note.id == id);
+      _notesStreamController.add(_notes);
     }
   }
 
@@ -82,6 +106,8 @@ class NotesService {
       text: text,
       isSyncedWithCloud: true,
     );
+    _notes.add(note);
+    _notesStreamController.add(_notes);
     return note;
   }
 
@@ -155,6 +181,7 @@ class NotesService {
       await db.execute(createUserTable);
       //Create notes table
       await db.execute(createNotesTable);
+      await _cachedNotes();
     } on MissingPlatformDirectoryException {
       throw UnableToGetDocumentsDirectoryException();
     }
