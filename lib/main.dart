@@ -1,5 +1,6 @@
 import 'package:comingsoon/services/auth/auth_services.dart';
-import 'package:comingsoon/views/notes_view.dart';
+import 'package:comingsoon/views/notes/new_note_view.dart';
+import 'package:comingsoon/views/notes/notes_view.dart';
 import 'package:flutter/material.dart';
 import 'package:comingsoon/views/login_view.dart';
 import 'package:comingsoon/views/register_view.dart';
@@ -11,7 +12,9 @@ void main() {
   runApp(MaterialApp(
     title: 'Flutter Demo',
     theme: ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.deepPurple,
+      ),
       useMaterial3: true,
     ),
     home: const HomePage(),
@@ -20,6 +23,7 @@ void main() {
       registerRoute: (context) => const RegisterView(),
       notesRoute: (context) => const NotesView(),
       verifyEmailRoute: (context) => const VerifyEmailView(),
+      newNoteRoute: (context) => const NewNoteView(),
     },
   ));
 }
