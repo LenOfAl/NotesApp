@@ -121,7 +121,7 @@ class NotesService {
     if (dbUser != owner) {
       throw CouldNotFindUserException();
     }
-    const text = '';
+    const text = 'Why is this happening';
     //create the note
     final noteId = await db.insert(noteTable, {
       userIdColumn: owner.id,
