@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:comingsoon/constants/routes.dart';
 import 'package:comingsoon/enums/enums_menu_actions.dart';
 import 'package:comingsoon/services/auth/auth_services.dart';
@@ -37,7 +39,7 @@ class _NotesViewState extends State<NotesView> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(newNoteRoute);
+              Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
             },
             icon: const Icon(
               Icons.add,
@@ -84,10 +86,17 @@ class _NotesViewState extends State<NotesView> {
                     case ConnectionState.active:
                       if (snapshot.hasData) {
                         final allNotes = snapshot.data as List<DatabaseNote>;
+                        log(allNotes.toString());
                         return NotesListVew(
                           notes: allNotes,
                           onDeleteNote: (note) async {
                             await _notesService.deleteNote(id: note.id);
+                          },
+                          onTap: (note) {
+                            Navigator.of(context).pushNamed(
+                              createOrUpdateNoteRoute,
+                              arguments: note,
+                            );
                           },
                         );
                       }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
@@ -11,10 +12,11 @@ class NotesService {
 
   static final NotesService _shared = NotesService._sharedInstance();
   NotesService._sharedInstance() {
-    _notesStreamController =
-        StreamController<List<DatabaseNote>>.broadcast(onListen: () {
-      _notesStreamController.sink.add(_notes);
-    });
+    _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
+      onListen: () {
+        _notesStreamController.sink.add(_notes);
+      },
+    );
   }
   factory NotesService() => _shared;
 
@@ -55,6 +57,7 @@ class NotesService {
     } else {
       final updatedNote = await getNote(id: note.id);
       _notes.removeWhere((note) => note.id == updatedNote.id);
+      _notes.add(updatedNote);
       _notesStreamController.add(_notes);
       return updatedNote;
     }
@@ -64,6 +67,7 @@ class NotesService {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
     final notes = await db.query(noteTable);
+    log('hello');
     return notes.map((notesRow) => DatabaseNote.fromRow(notesRow));
   }
 
