@@ -1,8 +1,11 @@
 import 'package:comingsoon/constants/routes.dart';
 import 'package:comingsoon/services/auth/auth_exceptions.dart';
 import 'package:comingsoon/services/auth/auth_services.dart';
+import 'package:comingsoon/services/auth/bloc/auth_bloc.dart';
+import 'package:comingsoon/services/auth/bloc/auth_event.dart';
 import 'package:comingsoon/utilities/dialogs/error_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -60,10 +63,10 @@ class _LoginViewState extends State<LoginView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                await AuthService.firebase().logIn(
-                  email: email,
-                  password: password,
-                );
+                context.read<AuthBloc>().add(AuthEventLogIn(
+                      email,
+                      password,
+                    ));
                 final user = AuthService.firebase().currentUser;
                 if (user?.isEmailVerified ?? false) {
                   if (!mounted) return;
