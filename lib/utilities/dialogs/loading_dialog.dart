@@ -14,6 +14,7 @@ CloseDialog showLoadingDialog(
       ],
     ),
   );
+
   showDialog(
     context: context,
     barrierDismissible: false,
