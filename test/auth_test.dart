@@ -126,4 +126,7 @@ class MockAuthProvider implements AuthProvider {
 
   @override
   AuthUser? get currentUser => _user;
+
+  @override
+  Future<void> sendPasswordReset({required String email}) async {}
 }

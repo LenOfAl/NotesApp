@@ -55,30 +55,32 @@ class LoadingScreen {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 10.0),
-                        const CircularProgressIndicator(),
-                        const SizedBox(height: 20.0),
-                        StreamBuilder(
-                            stream: _text.stream,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return Text(
-                                  snapshot.data as String,
-                                  textAlign: TextAlign.center,
-                                );
-                              } else {
-                                return Container();
-                              }
-                            })
-                      ],
-                    ),
-                  )),
+                padding: const EdgeInsets.all(16),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 10.0),
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 20.0),
+                      StreamBuilder(
+                        stream: _text.stream,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              snapshot.data as String,
+                              textAlign: TextAlign.center,
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         );
