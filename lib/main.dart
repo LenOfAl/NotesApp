@@ -20,7 +20,7 @@ void main() {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.black,
         ),
         useMaterial3: true,
       ),

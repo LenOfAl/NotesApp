@@ -95,12 +95,14 @@ class _CreateOrUpdateExistingNoteViewState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: const Text(
             'New Note',
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Colors.white,
             ),
           ),
+          backgroundColor: Colors.black,
           actions: [
             IconButton(
               onPressed: () async {
@@ -111,10 +113,11 @@ class _CreateOrUpdateExistingNoteViewState
                   Share.share(text);
                 }
               },
-              icon: const Icon(Icons.share),
+              icon: const Icon(
+                Icons.share,
+              ),
             )
           ],
-          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
         body: FutureBuilder(
           builder: (context, snapshot) {

@@ -51,7 +51,7 @@ class _LoginViewState extends State<LoginView> {
               'Login',
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.deepPurple),
+            backgroundColor: Colors.black),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

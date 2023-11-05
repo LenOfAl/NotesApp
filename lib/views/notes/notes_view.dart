@@ -36,7 +36,7 @@ class _NotesViewState extends State<NotesView> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black,
         actions: [
           IconButton(
             onPressed: () {
